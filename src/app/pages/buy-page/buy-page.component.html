@@ -1,0 +1,12 @@
+<div class="row text-center">
+  <h4>{{ titleSignalFunction() }}</h4>
+  <ng-container *ngIf="stateLoading() === 'READY'">
+    <app-card-item
+      *ngFor="let item of listItems"
+      [item]="item"
+      class="col-md-3"
+      (clickItem)="clickItem(item)"
+    >
+    </app-card-item>
+  </ng-container>
+</div>

@@ -1,0 +1,17 @@
+<mat-card
+  *ngIf="event"
+  class="card custom-card m-3"
+  [class]="{ 'card--selected': isSelect }"
+  (click)="clickEvent()"
+>
+  <mat-card-content class="card-content">
+    <div class="card-content__header">
+      <span class="title">{{ event.name }} </span>
+    </div>
+    <div
+      *ngIf="event.imageUrl"
+      class="card-content__img"
+      [style.background-image]="'url(' + event.imageUrl + ')'"
+    ></div>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,46 @@
+<mat-card
+  *ngIf="item"
+  class="card flex-column custom-card"
+  [class]="{ 'card--selected': isSelect }"
+>
+  <mat-card-content class="card-content flex-column">
+    <div class="card-content__header">
+      <span class="title">{{ item.itemName }}</span>
+      <div class="subtitle">
+        <span class="subtitle__hour">Codigo: </span>
+        <span class="">{{ item.itemCode }}</span>
+      </div>
+      <div class="subtitle">
+        <span class="subtitle__hour">Stock: </span>
+        <span class="">{{ item.stock }}</span>
+      </div>
+    </div>
+
+    <div
+      *ngIf="item.imageUrl"
+      class="card-content__img"
+      [style.background-image]="'url(' + item.imageUrl + ')'"
+    ></div>
+
+    <div class="card-content__content flex-row justify-content-between">
+      <button class="circular-btn" (click)="decreaseQuantity()">
+        <mat-icon>remove</mat-icon>
+      </button>
+
+      <span class="name-event">{{ item!.price | customCurrency }}</span>
+
+      <button class="circular-btn" (click)="increaseQuantity()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+    <div class="row">
+      <div class="col-6 offset-3">
+        <input type="number" class="form-control text-center" readonly [(ngModel)]="item.quantity" />
+      </div>
+
+      <button class="btn btn-primary mt-4" (click)="addItem()" [disabled]="item.stock <= 0">
+        Agregar al carrito
+      </button>
+    </div>
+  </mat-card-content>
+</mat-card>
