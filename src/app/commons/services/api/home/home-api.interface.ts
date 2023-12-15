@@ -3,14 +3,14 @@ export interface IResponseHome {
 	success: boolean;
 }
 
-export interface IHomeConcerts {
+export interface IHomeItems {
 	id: number;
 	title: string;
 	description: string;
 	place: string;
 	unitPrice: number;
-	genre: string;
-	genreId: number;
+	Category: string;
+	CategoryId: number;
 	dateEvent: string;
 	timeEvent: string;
 	imageUrl: string;

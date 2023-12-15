@@ -1,6 +1,6 @@
 import { ICardCategory } from '../../../models/components.interface';
 import {
-  IHomeConcerts,
+  IHomeItems,
   IHomeCategories,
   IResponseHome,
 } from './home-api.interface';

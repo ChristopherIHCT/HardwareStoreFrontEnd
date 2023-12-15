@@ -5,7 +5,7 @@ import { environment } from '../../../../../environments/environment';
 import { IResponse } from '../api-models-base.interface';
 import {
 	IRequestCreateSale,
-	IRequestListSalesByGenre,
+	IRequestListSalesByCategory,
 	IResponseListSales,
 	IResponseSale
 } from './sale-api-model.interface';
@@ -30,7 +30,7 @@ export class SaleApiService {
 		return this._httpClient.get<IResponse<IResponseListSales[]>>(URL_LIST_SALE);
 	}
 
-	getListSales(request: IRequestListSalesByGenre): Observable<IResponse<IResponseListSales[]>> {
+	getListSales(request: IRequestListSalesByCategory): Observable<IResponse<IResponseListSales[]>> {
 		let params = new HttpParams().set('dateStart', request.dateStart).set('dateEnd', request.dateEnd);
 		if (request.page) {
 			params = params.set('page', request.page);

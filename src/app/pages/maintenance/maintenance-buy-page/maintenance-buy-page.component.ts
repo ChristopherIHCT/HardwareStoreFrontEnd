@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
 import { CardEventComponent } from '../../../commons/components/card-event/card-event.component';
 import { IResponseListSales } from '../../../commons/services/api/sale/sale-api-model.interface';
 import { SharedFormCompleteModule } from '../../../commons/shared/shared-form-complete.module';
-import { IResponseGenre } from '../services/genre/genre-api-model.interface';
+import { IResponseCategorie } from '../services/category/category-api-model.interface';
 import { SaleApiService } from '../services/service-index';
 
 @Component({
@@ -27,11 +27,11 @@ export default class MaintenanceBuyPageComponent implements OnInit, AfterViewIni
 	private _formBuilder = inject(FormBuilder);
 	private _datePipe = inject(DatePipe);
 
-	listGenres: IResponseGenre[] = [];
+	listCategorys: IResponseCategorie[] = [];
 	dataSource = new MatTableDataSource<IResponseListSales>();
 
 	formGroup = this._formBuilder.group({
-		genre: [0, Validators.required],
+		Category: [0, Validators.required],
 		dateInit: [new Date(), Validators.required],
 		dateEnd: [new Date(), Validators.required]
 	});

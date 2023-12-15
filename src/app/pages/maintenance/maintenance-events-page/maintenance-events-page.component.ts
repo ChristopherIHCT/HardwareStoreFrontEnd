@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { EventsService } from './events.service';
+import { ItemsService } from './items.service';
 import { MaintenanceEventsModule } from './maintenance-events-page.module';
 
 @Component({
@@ -7,7 +7,7 @@ import { MaintenanceEventsModule } from './maintenance-events-page.module';
 	selector: 'app-maintenance-events-page',
 	templateUrl: './maintenance-events-page.component.html',
 	imports: [MaintenanceEventsModule],
-	providers: [EventsService]
+	providers: [ItemsService]
 })
 export default class MaintenanceEventsPageComponent {
 	indexTabSaveEvent = 0;

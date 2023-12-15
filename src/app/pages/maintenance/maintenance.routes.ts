@@ -11,12 +11,12 @@ export default [
 		children: [
 			{
 				path: PATH_MAINTENANCE_PAGES.buy.onlyPath,
-				title: 'Eventos vendidos',
+				title: 'Articulos vendidos',
 				loadComponent: () => import('./maintenance-buy-page/maintenance-buy-page.component')
 			},
 			{
 				path: PATH_MAINTENANCE_PAGES.events.onlyPath,
-				title: 'Eventos',
+				title: 'Articulos',
 				loadComponent: () => import('./maintenance-events-page/maintenance-events-page.component')
 			},
 			{

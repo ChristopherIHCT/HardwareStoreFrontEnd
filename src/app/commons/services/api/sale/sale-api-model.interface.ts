@@ -6,8 +6,8 @@ export interface IRequestCreateSale {
 
 //#endregion
 
-//#region ListSalesByGenre
-export interface IRequestListSalesByGenre {
+//#region ListSalesByCategory
+export interface IRequestListSalesByCategory {
 	dateStart: string;
 	dateEnd: string;
 	page?: number;
@@ -31,7 +31,7 @@ export interface IResponseListSales {
 export interface IResponseSale {
 	id: number;
 	dateEvent: string;
-	genre: string;
+	Category: string;
 	imageUrl: string;
 	title: string;
 	operationNumber: string;

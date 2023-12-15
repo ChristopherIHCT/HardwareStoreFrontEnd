@@ -24,7 +24,7 @@ export interface ICardEvent {
 	date: string;
 	hour: string;
 	price: number;
-	genre: string;
+	Category: string;
 	place: string;
 }
 //#endregion

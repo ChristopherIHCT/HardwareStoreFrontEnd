@@ -1,9 +1,9 @@
 import { AfterViewInit, Component, EventEmitter, OnInit, Output, ViewChild, inject } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { IResponseConcert } from '../../services/concerts/concert-api-model.interface';
-import { ConcertApiService } from '../../services/service-index';
-import { EventsService } from '../events.service';
+import { IResponseItem } from '../../services/Items/item-api-model.interface';
+import { ItemApiService } from '../../services/service-index';
+import { ItemsService } from '../items.service';
 
 @Component({
 	selector: 'app-event-table',
@@ -14,8 +14,8 @@ export class EventTableComponent implements OnInit, AfterViewInit {
 	@Output() clickUpdate = new EventEmitter();
 	@ViewChild(MatPaginator) paginator!: MatPaginator;
 
-	private readonly _concertApiService = inject(ConcertApiService);
-	private readonly _eventsService = inject(EventsService);
+	private readonly _ItemApiService = inject(ItemApiService);
+	private readonly _ItemsService = inject(ItemsService);
 
 	displayedColumns: string[] = [
 		'imageUrl',
@@ -24,18 +24,18 @@ export class EventTableComponent implements OnInit, AfterViewInit {
 		'dateEvent',
 		'ticketsQuantity',
 		'price',
-		'genre',
+		'Category',
 		'status',
 		'action'
 	];
-	dataSource = new MatTableDataSource<IResponseConcert>();
+	dataSource = new MatTableDataSource<IResponseItem>();
 	resultsLength = 0;
 
 	ngOnInit(): void {
-		this._loadConcerts();
+		this._loadItems();
 
-		this._eventsService.channelCrudEvent$.subscribe(() => {
-			this._loadConcerts();
+		this._ItemsService.channelCrudEvent$.subscribe(() => {
+			this._loadItems();
 		});
 	}
 
@@ -48,24 +48,22 @@ export class EventTableComponent implements OnInit, AfterViewInit {
 		this.dataSource.filter = filterValue.trim().toLowerCase();
 	}
 
-	private _loadConcerts(): void {
-		this._concertApiService.getListConcerts().subscribe((response) => {
+	private _loadItems(): void {
+		this._ItemApiService.getListItems().subscribe((response) => {
 			this.dataSource.data = response.data;
 			this.resultsLength = response.data.length;
 		});
 	}
 
 	clickUpdateEvent(idEvent: number): void {
-		this._eventsService.updateForm(idEvent).subscribe(() => this.clickUpdate.emit());
+		this._ItemsService.updateForm(idEvent).subscribe(() => this.clickUpdate.emit());
 	}
 
 	clickDelete(idEvent: number): void {
-		this._eventsService.deleteEvent(idEvent).subscribe(() => {
-			this._loadConcerts();
+		this._ItemsService.deleteEvent(idEvent).subscribe(() => {
+			this._loadItems();
 		});
 	}
 
-	clickFinalize(idEvent: number): void {
-		this._eventsService.endEvent(idEvent);
-	}
+	
 }

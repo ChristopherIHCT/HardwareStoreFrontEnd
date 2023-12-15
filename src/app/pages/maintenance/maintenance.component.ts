@@ -3,7 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { CardMenusComponent } from '../../commons/components/card-menus/card-menus.component';
 import { PATH_MAINTENANCE_PAGES } from '../../commons/config/path-pages';
 import { ICardMenu } from '../../commons/models/components.interface';
-import { ConcertApiService, GenreApiService, ReportsApiService } from './services/service-index';
+import { ItemApiService, CategoryApiService, ReportsApiService } from './services/service-index';
 
 @Component({
 	standalone: true,
@@ -11,7 +11,7 @@ import { ConcertApiService, GenreApiService, ReportsApiService } from './service
 	templateUrl: './maintenance.component.html',
 	styleUrls: ['./maintenance.component.scss'],
 	imports: [CardMenusComponent, RouterOutlet],
-	providers: [ConcertApiService, GenreApiService, ReportsApiService]
+	providers: [ItemApiService, CategoryApiService, ReportsApiService]
 })
 export class MaintenanceComponent {
 	readonly menuAdmin: ICardMenu[] = [
@@ -21,14 +21,14 @@ export class MaintenanceComponent {
 			path: PATH_MAINTENANCE_PAGES.buy.withSlash
 		},
 		{
-			title: 'EVENTOS',
+			title: 'Articulos',
 			nameImage: 'events.png',
 			path: PATH_MAINTENANCE_PAGES.events.withSlash
 		},
 		{
 			title: 'GENEROS',
-			nameImage: 'genres.png',
-			path: PATH_MAINTENANCE_PAGES.genres.withSlash
+			nameImage: 'Categorys.png',
+			path: PATH_MAINTENANCE_PAGES.Categorys.withSlash
 		},
 		{
 			title: 'REPORTES',

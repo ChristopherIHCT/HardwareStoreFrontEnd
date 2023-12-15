@@ -1,8 +1,8 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CRUD_METHOD } from '../../../../commons/models/enums';
-import { IResponseGenre } from '../../services/genre/genre-api-model.interface';
-import { GenreApiService } from '../../services/service-index';
-import { EventsService } from '../events.service';
+import { CategoryApiService } from '../../services/service-index';
+import { ItemsService } from '../items.service';
+import { IResponseCategorie } from '../../services/category/category-api-model.interface';
 
 @Component({
 	selector: 'app-crud-event',
@@ -10,19 +10,19 @@ import { EventsService } from '../events.service';
 	styleUrls: ['./crud-event.component.scss']
 })
 export class CrudEventComponent implements OnInit {
-	private _genreApiService = inject(GenreApiService);
+	private _CategoryApiService = inject(CategoryApiService);
 
-	eventsService = inject(EventsService);
+	ItemsService = inject(ItemsService);
 
-	listGenres: IResponseGenre[] = [];
+	listCategorys: IResponseCategorie[] = [];
 
 	ngOnInit(): void {
-		this._loadGenres();
+		this._loadCategorys();
 	}
 
-	private _loadGenres(): void {
-		this._genreApiService.getGenres().subscribe((response) => {
-			this.listGenres = response.data;
+	private _loadCategorys(): void {
+		this._CategoryApiService.getCategorys().subscribe((response) => {
+			this.listCategorys = response.data;
 		});
 	}
 
@@ -33,17 +33,17 @@ export class CrudEventComponent implements OnInit {
 			reader.readAsDataURL(htmlInput.files[0]);
 			reader.onload = () => {
 				const resultImageFile = reader.result!.toString();
-				this.eventsService.fileNameField.setValue(htmlInput.files![0].name);
-				this.eventsService.imageField.setValue(resultImageFile);
+				this.ItemsService.fileNameField.setValue(htmlInput.files![0].name);
+				this.ItemsService.imageUrlField.setValue(resultImageFile);
 			};
 		}
 	}
 	clickSave(): void {
-		this.eventsService.saveEvent();
+		this.ItemsService.saveEvent();
 	}
 
 	clickClear(): void {
-		this.eventsService.crudMethod = CRUD_METHOD.SAVE;
-		this.eventsService.eventsFormGroup.reset();
+		this.ItemsService.crudMethod = CRUD_METHOD.SAVE;
+		this.ItemsService.itemsFormGroup.reset();
 	}
 }
